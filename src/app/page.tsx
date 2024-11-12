@@ -20,7 +20,7 @@ type Address = {
 
 const initialAddresses: Address[] = [
   {
-    id: self.crypto.randomUUID(),
+    id: crypto.randomUUID(),  // Changed to use crypto.randomUUID()
     bairro: "Centro",
     cep: "01001-000",
     complemento: "Apto 101",
@@ -31,7 +31,7 @@ const initialAddresses: Address[] = [
     consultedAt: new Date(),
   },
   {
-    id: self.crypto.randomUUID(),
+    id: crypto.randomUUID(),
     bairro: "Copacabana",
     cep: "22041-001",
     complemento: "Bloco B, Ap 502",
@@ -42,7 +42,7 @@ const initialAddresses: Address[] = [
     consultedAt: new Date(),
   },
   {
-    id: self.crypto.randomUUID(),
+    id: crypto.randomUUID(),
     bairro: "Savassi",
     cep: "30140-071",
     complemento: "Loja 3",
@@ -53,7 +53,7 @@ const initialAddresses: Address[] = [
     consultedAt: new Date(),
   },
   {
-    id: self.crypto.randomUUID(),
+    id: crypto.randomUUID(),
     bairro: "Meireles",
     cep: "60160-230",
     complemento: "Casa 10",
@@ -75,7 +75,6 @@ function formatDate(date: Date) {
 }
 
 export default function Home() {
-  const [address, setAddress] = useState(null);
   const [loading, setLoading] = useState(false);
   const [addresses, setAddresses] = useState<Address[]>(initialAddresses);
   const [textValue, setTextValue] = useState("");
@@ -187,23 +186,22 @@ export default function Home() {
               exit={{ opacity: 0, y: -5 }}
               className="hover:bg-gray-700 transition-all"
             >
-            <td className="px-6 py-3 border-t border-gray-700">{address.logradouro}</td>
-            <td className="px-6 py-3 border-t border-gray-700">{address.bairro}</td>
-            <td className="px-6 py-3 border-t border-gray-700">{address.localidade}</td>
-            <td className="px-6 py-3 border-t border-gray-700">{address.uf}</td>
-            <td className="px-6 py-3 border-t border-gray-700">{address.cep}</td>
-            <td className="px-6 py-3 border-t border-gray-700">{formatDate(address.consultedAt)}</td>
-            <td className="px-6 py-3 border-t border-gray-700">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => handleDeleteAddress(address.id)}
-                className="bg-red-500 hover:bg-red-600 p-2 rounded-lg flex items-center justify-center"
-              >
-                <MdOutlineDelete size={20} />
-              </motion.button>
-            </td>
-
+              <td className="px-6 py-3 border-t border-gray-700">{address.logradouro}</td>
+              <td className="px-6 py-3 border-t border-gray-700">{address.bairro}</td>
+              <td className="px-6 py-3 border-t border-gray-700">{address.localidade}</td>
+              <td className="px-6 py-3 border-t border-gray-700">{address.uf}</td>
+              <td className="px-6 py-3 border-t border-gray-700">{address.cep}</td>
+              <td className="px-6 py-3 border-t border-gray-700">{formatDate(address.consultedAt)}</td>
+              <td className="px-6 py-3 border-t border-gray-700">
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => handleDeleteAddress(address.id)}
+                  className="bg-red-500 hover:bg-red-600 p-2 rounded-lg flex items-center justify-center"
+                >
+                  <MdOutlineDelete size={20} />
+                </motion.button>
+              </td>
             </motion.tr>
           ))}
         </tbody>
